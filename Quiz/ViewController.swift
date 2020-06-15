@@ -9,12 +9,57 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    
+    @IBOutlet weak var questionLabel: UILabel!
+    
+    @IBOutlet weak var progressBar: UIProgressView!
+    
+    let quiz = [
+        ["I am a boy", "True"],
+        ["why is it?", "True"],
+        ["It was good", "False"]
+        
+    ]
+    
+    var quizNumber = 0
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        UpdateUI()
     }
 
-
+    
+    
+    @IBAction func answerButton(_ sender: UIButton) {
+        
+        
+        let userAnswer = sender.currentTitle!
+        let realAnswer = quiz[quizNumber][1]
+        
+        if userAnswer == realAnswer{
+            print("good")
+            
+        } else {
+            print("bad")
+        }
+        
+        if quiz.count > quizNumber + 1 {
+            quizNumber += 1
+        }
+        
+        UpdateUI()
+        
+        
+    }
+    
+    func UpdateUI(){
+        
+        questionLabel.text = quiz[quizNumber][0]
+        
+        
+    }
+    
 }
 
